@@ -22,6 +22,7 @@ if (cluster.isMaster) {
 
 	// Add a basic route – index page
 	app.get('/', function (req, res) {
+		console.log('Hello from Worker ' + cluster.worker.id);
 	    res.send('Hello from Worker ' + cluster.worker.id);
 	});
 
