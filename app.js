@@ -29,3 +29,10 @@ if (cluster.isMaster) {
 	app.listen(3200);
 	console.log('Worker ' + cluster.worker.id + ' running!');
 }
+
+// Listen for dying workers
+cluster.on('exit', function (worker) {
+    // Replace the dead worker, we're not sentimental
+    console.log('Worker ' + worker.id + ' died :(');
+    cluster.fork();
+});
